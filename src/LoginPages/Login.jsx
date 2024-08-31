@@ -5,9 +5,11 @@ import { getUserDetail, login } from "../API";
 import { useDispatch } from "react-redux";
 import { addUser, setSecret } from "../ReduxStore/Slicer";
 import { Bounce, ToastContainer,toast } from "react-toastify";
+import { useState } from "react";
 
 
 export default function Login(){
+    const [isLoading,setIsLoading] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const successToast = (message)=>{
@@ -39,25 +41,37 @@ export default function Login(){
     }
 
     const onLoginClick = async(userData) => {
-        const getLoginBack= await login(userData);
-        console.log('Hi Again',getLoginBack)
-        if(getLoginBack == null || getLoginBack == ""){
-            errorToast('Not Registered Yet, Please Register to login')
-        }else if(getLoginBack == '200'){
-            const user = await getUserDetail(userData.mail);
-            dispatch(addUser(user));
-            dispatch(setSecret(userData.password))
-            successToast('Login Successful! Preparing User...')
-            setTimeout(()=>{
-                navigate("/js");
-            },2000)
-        }else if(getLoginBack == '409'){
-            errorToast("Invalid user credentials");
-        }else{
-            errorToast("something occured");
+        try{
+            setIsLoading(true);
+            const getLoginBack= await login(userData);
+            setIsLoading(false);
+            console.log('Hi Again',getLoginBack)
+            if(getLoginBack == null || getLoginBack == ""){
+                errorToast('Not Registered Yet, Please Register to login')
+            }else if(getLoginBack == '200'){
+                const user = await getUserDetail(userData.mail);
+                dispatch(addUser(user));
+                dispatch(setSecret(userData.password))
+                successToast('Login Successful! Preparing User...')
+                setTimeout(()=>{
+                    navigate("/js");
+                },2000)
+            }else if(getLoginBack == '409'){
+                errorToast("Invalid user credentials");
+            }else{
+                errorToast("something occured");
+            }
+        }catch(error){
+            setIsLoading(false);
+            errorToast('Login ERROR!!!')
+            console.log(error);
         }
     }
     return<>
+        <div id="loader" className={isLoading ? "loader" : "d-none"}>
+            <div id='loader-log'></div>
+            <p id='loader-p'>Initial Loading will take time on this Free Server</p>
+        </div>
         <div className="container-fluid ">
             <div className="row login-screen d-flex justify-content-center align-items-center p-xl-5 vh-100">
                 <div className="row p-3 w-100 login-row d-flex flex-column flex-md-row justify-content-center align-items-center">
