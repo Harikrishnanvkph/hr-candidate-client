@@ -5,15 +5,17 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { register } from "../API";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
 export default function Register(){
-    
+    const [isLoading,setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const onRegisterClick = async (userData) => {
         try {
+            setIsLoading(true);
             const getLoginBack = await register(userData);
-    
+            setIsLoading(false);
             if (getLoginBack === 409) {
                 toast.error('User already exists, please login!', {
                     position: "top-center",
@@ -57,6 +59,7 @@ export default function Register(){
                 console.log("An unknown error occurred.");
             }
         } catch (error) {
+            setIsLoading(false);
             console.error("Error during registration:", error);
             toast.error('An error occurred. Please try again later.', {
                 position: "top-center",
@@ -73,6 +76,10 @@ export default function Register(){
     }
     
     return<>
+        <div id="loader" className={isLoading ? "loader" : "d-none"}>
+            <div id='loader-log'></div>
+            <p id='loader-p'>Initial Loading will take time on this Free Server</p>
+        </div>
         <div className="container-fluid">
             <div className="row  login-screen d-flex justify-content-center align-items-center p-xl-5 vh-100">
                 <div className="row p-3 w-100 login-row d-flex flex-column flex-md-row justify-content-center align-items-center">
