@@ -1,0 +1,254 @@
+*{
+    box-sizing: border-box;
+}
+
+.profile-div-button{
+    max-width: 100px;
+    max-height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border-style: none;
+    background-color: transparent;
+}
+
+.profile-div-button-span{
+    display: inline-block;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    vertical-align:middle;
+}
+
+.profile-div-button-span-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.job-seeker{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.jb-nav{
+    background-color: antiquewhite;
+    flex : 0 0 auto;
+}
+
+.jb-body{
+    flex : 1 1 auto;
+    background-color: aliceblue;
+    overflow: hidden;
+    max-height: calc(100vh - 78px);
+}
+
+
+.jb-menu{
+    background-color: bisque;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    max-width: 250px;
+    max-height: calc(100vh - 78px);
+}
+
+.jb-laptop{
+    max-height: calc(100vh - 78px);
+}
+
+.jb-section{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+
+.jb-icon{
+    font-size: 30px !important;
+}
+
+.jb-p{
+    font-size: 18px;
+}
+
+.jb-menu-mobile{
+    max-height: fit-content;
+    background-color: antiquewhite;
+}
+
+.jbprofile-pic {
+    width: 200px;
+    height: 200px;
+}
+
+
+.jb-section-mobile{
+    overflow-y: scroll;
+}
+
+.circle{
+    clip-path: circle(50%);
+    background-color: green;
+    width: 20px;
+    height: 20px;
+}
+
+.jb-title{
+    border: 1px solid green;
+    gap: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.jbicon:hover{
+    cursor: pointer;
+    background-color: antiquewhite;
+}
+
+
+.jbprofile-pic:hover img {
+    opacity: 0.7;
+}
+
+.jb-label{
+    vertical-align: middle;
+    text-align: center !important;
+}
+
+
+.jbprofile-pic img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.jbprofile-details{
+    width: 550px;
+    min-height: 200px;
+    height: fit-content;
+    & p{
+        margin : 0px
+    }
+}
+
+.jb-update input{
+    flex: 1 0 120px;
+}
+
+.emp-jb-card{
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.emp-jb-card p{
+    overflow-wrap: break-word;
+    margin: 0%;
+    margin: 5px;
+}
+
+.emp-card{
+    background-color: white !important;
+    height: 100%;
+}
+
+.emp-card img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ref-inp input{
+    min-width: min(200px,100%);
+}
+
+.candidate-seeker{
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width : 768px){
+    .ref-inp input{
+        min-width: 300px;
+    }
+}
+
+@media (min-width : 576px){
+    .ce-chat-settings-column{
+        display: none !important;
+    }
+    
+    .ce-chat-feed-column{
+        flex-basis: 60% !important;
+        width: 60% !important;
+        max-width: 60% !important;
+    }
+    
+    .ce-chat-list-column{
+        flex-basis: 40% !important;
+        width: 40% !important;
+        max-width: 40% !important;
+    }
+}
+
+@media (max-width : 768px){
+    .jb-menu{
+        max-width: 100px;
+    }
+    .jb-p{
+        text-align: center;
+        font-size: 12px;
+    }
+    .jb-icon{
+        font-size: 20px;
+        margin: 0% !important;
+    }
+    .jbprofile-details{
+        width: 100%;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width : 575px){
+    .ref-inp input{
+        margin-top: 10px;
+        min-width: max(200px,100%);
+    }
+    .jb-body-mobile{
+        height: calc(100vh - 72px);
+    }
+
+    .jbprofile-details{
+        width: fit-content;
+    }
+
+    .emp-jb-card{
+        margin-top: 10px;
+        max-width: 500px;
+        background-color: white;
+        border-radius: 10px;
+        min-width: 400px;
+    }
+    .emp-card{
+        background-color: aliceblue !important;
+    }
+    .stickly-referral button{
+        width: 100%;
+    }
+}
+
+@media (max-width : 400px){
+    .emp-jb-card{
+        min-width: 275px;
+        flex-grow: 1;
+    }
+}
+
+

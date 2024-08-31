@@ -1,0 +1,51 @@
+
+.login-screen{
+    width: 100vw;
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+.login-row{
+    background-color: bisque;
+}
+
+.login-div-image{
+    & .login-image{
+        width: 100%;
+        object-fit:fill;
+        max-height: 400px;
+    }
+}
+
+.login-radio{
+    color: blue;
+}
+
+.reg-radio:hover{
+    & .hover{
+        border: 1px dashed black;   
+    }
+}
+
+input[type=radio]{
+    transform: scale(1.2);
+}
+
+.regiter-key{
+    min-height: 35px;
+    border: 1px solid rgb(118, 118, 118);
+}
+
+.register-button{
+    min-width: 150px;
+}
+
+@media (min-width : 992px){
+    .login-button{
+        width: 50%;
+    }
+}
+
+
+
+
