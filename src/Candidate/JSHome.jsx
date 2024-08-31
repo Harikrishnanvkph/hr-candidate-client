@@ -6,14 +6,14 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import HelpIcon from '@mui/icons-material/Help';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import "./JS.css"
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate, useNavigation } from 'react-router-dom';
 import JBProfile from './JBProfile';
 import JBHelp from './JBHelp';
 import JBMessages from './JBMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import JBReferral from './JBReferral';
 import JBServices from './JBServices';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Bounce, ToastContainer,toast } from "react-toastify";
 import { toastMessage } from "../ReduxStore/Slicer";
 import { MyReferrals } from './MyReferrals';
@@ -44,7 +44,9 @@ const routes = <>
 export function JSHome() {
   const currentUser = useSelector((state)=>state.myStore.userCE);
   const toastT = useSelector((state)=>state.myStore.toastMessage);
+  const [lg,setLg] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(()=>{
     if(toastT != ""){
@@ -75,12 +77,21 @@ export function JSHome() {
               <div className='circle'></div>
               <p className='m-0'><strong>Candidate</strong></p>
             </div>
-            <button className='profile-div-button mx-2 mr-4'>
+            <button className='profile-div-button mx-2 mr-4' onClick={()=>{
+              setLg(!lg);
+            }}>
               <span role="img" className='profile-div-button-span'>
                 <img className="profile-div-button-span-img" src={
                   `${currentUser.image.data == "" || currentUser.image.data == null ? '/defaultProfile.jpg' : `data:image/png;base64,${currentUser.image.data}`}`
                 } alt={`profile picture of ${currentUser.firstName}`} />
               </span>
+              <div className={`${lg ? "d-block" : "d-none"} logout`} 
+              onClick={()=>{
+                console.log('hellow')
+                navigate("/login")
+              }}>
+                <b>Log Out</b>
+              </div>
             </button>
           </div>
         </nav>
