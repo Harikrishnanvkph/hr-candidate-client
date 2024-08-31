@@ -3,12 +3,32 @@
 }
 
 .profile-div-button{
+    position: relative;
     max-width: 100px;
     max-height: 40px;
     min-width: 40px;
     min-height: 40px;
     border-style: none;
     background-color: transparent;
+}
+
+.logout{
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 5px);
+    right: 0%;
+    min-width: 200px;
+    width: fit-content;
+    background-color:dodgerblue ;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color : white;
+
+}
+
+.logout:hover{
+    cursor: pointer;
 }
 
 .profile-div-button-span{
@@ -65,7 +85,6 @@
     width: 100%;
     overflow-y: scroll;
 }
-
 
 .jb-icon{
     font-size: 30px !important;
