@@ -51,7 +51,7 @@ export default function NavHome(){
             </div>
             <div className='p-2 d-flex flex-column'>
                   <Link className="nav-link" to="/login">Login</Link>
-                  <Link className="nav-link" to="/login">SignUp</Link>
+                  <Link className="nav-link" to="/signup">SignUp</Link>
             </div>
          </div>
       </div>

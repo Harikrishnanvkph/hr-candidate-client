@@ -63,6 +63,20 @@ export function JSHome() {
       dispatch(toastMessage(""));
     }
   },[toastT])
+
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      event.preventDefault();
+      window.history.pushState(null, "", window.location.href);
+    };
+
+    window.history.pushState(null, "", window.location.href); // Push initial state
+    window.addEventListener("popstate", handleBackButton);
+
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, []);
   
   return (
     <>

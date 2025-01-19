@@ -42,6 +42,7 @@ export default function JBProfile(){
         form.append("mail",currentUser.mail);
         const host = await uploadImage(form);
         dispatch(addUser(host));
+        console.log(`hi check here ${host}`)
         setImage(`data:image/png;base64,${host.image.data}`);
     }
 

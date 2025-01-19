@@ -54,7 +54,7 @@ export default function Login(){
                 dispatch(setSecret(userData.password))
                 successToast('Login Successful! Preparing User...')
                 setTimeout(()=>{
-                    navigate("/js");
+                    navigate("/js",{replace : true});
                 },2000)
             }else if(getLoginBack == '409'){
                 errorToast("Invalid user credentials");
