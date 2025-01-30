@@ -8,10 +8,8 @@ import { addUser } from "../ReduxStore/Slicer";
 export default function JBProfile(){
     const currentUser = useSelector((state)=>state.myStore.userCE);
     const dispatch = useDispatch();
-    const [num,setNum] = useState(currentUser.phone_number == "" || currentUser.phone_number == null ? "" : currentUser.phone_number);
-    // const [skill,setSkill] = useState(currentUser.primary_skill == "" || currentUser.primary_skill == null ? "" : currentUser.primary_skill);
+    const [num,setNum] = useState(currentUser.phone_number === "" || currentUser.phone_number == null ? "" : currentUser.phone_number);
     const [upBNum, setUpBNum] = useState(0);
-    const [upBSkill, setUpBSkill] = useState(0);
     const [image,setImage] = useState(currentUser.image.data ?
         `data:image/png;base64,${currentUser.image.data}` : '/defaultProfile.jpg'
     )
@@ -25,25 +23,16 @@ export default function JBProfile(){
             setUpBNum(0);
         }
     }
-    const setUpBSkiller = async()=>{
-        setUpBSkill(upBSkill+1);
-        if(upBSkill == 1){
-            const updateSkill = await updateSkiller(skill,currentUser.mail);
-            console.log('got int')
-            dispatch(addUser(updateSkill));
-            setUpBSkill(0);
-        }
-    }
 
     const imageUpload = async(e)=>{
-        console.log("got in")
         const form = new FormData();
         form.append('profile-image',e.target.files[0]);
         form.append("mail",currentUser.mail);
         const host = await uploadImage(form);
-        dispatch(addUser(host));
-        console.log(`hi check here ${host}`)
-        setImage(`data:image/png;base64,${host.image.data}`);
+        if(host.status === 200) {
+            const img = URL.createObjectURL(e.target.files[0])
+            setImage(img);
+        }
     }
 
     useEffect(()=>{
@@ -51,8 +40,9 @@ export default function JBProfile(){
             const user = await getUserDetail(currentUser.mail);
             dispatch(addUser(user));
         }
-        getUser();
-    },[dispatch,image])
+        getUser().catch();
+        console.log('from useEffect of JBProfile.jsx')
+    },[image])
 
     return<>
         <div className="jbprofile-all h-100 d-flex align-items-center flex-column justify-content-center">
@@ -68,7 +58,7 @@ export default function JBProfile(){
                     <p className="col-sm-4 col-12 p-0">User Name</p>
                     <p className="col-2 d-sm-flex d-none p-0">-</p>
                     <p className="col-sm-6 col-12 p-0 pricing-highlighter">{currentUser.firstName}</p>
-                </div> 
+                </div>
                 <div className="row p-2 px-md-auto px-0  d-flex flex-sm-row flex-column align-items-center">
                     <p className="col-sm-4 col-12 p-0">Mobile Number</p>
                     <p className="col-2 p-0 d-sm-flex d-none p-0">-</p>
@@ -79,16 +69,6 @@ export default function JBProfile(){
                         <button className="ml-1 btn btn-primary" onClick={setUpBNumer}>{`${upBNum === 0 ? "Edit" : "Update"}`}</button>
                     </div>
                 </div>
-                {/* <div className="row p-2 d-flex flex-sm-row flex-column align-items-center">
-                    <p className="col-sm-4 col-12 p-0">Primary Skill</p>
-                    <p className="col-2 p-0 d-sm-flex d-none p-0">-</p>
-                    <div className="col-sm-6 col-12 p-0 pricing-highlighter d-flex justify-content-center">
-                        <input type="text" placeholder="My Skill" className="text-center profile-number" value={skill} onChange={(e)=>{
-                            setSkill(e.target.value);
-                        }} maxLength={25} disabled={upBSkill === 0} />
-                        <button className="ml-1 btn btn-primary" onClick={setUpBSkiller}>{`${upBSkill === 0 ? "Edit" : "Update"}`}</button>
-                    </div>
-                </div> */}
                 <div className="row p-2 d-flex flex-sm-row flex-column align-items-center">
                     <p className="col-sm-4 col-12 p-0">Mail Address</p>
                     <p className="col-2 p-0 d-sm-flex d-none p-0">-</p>

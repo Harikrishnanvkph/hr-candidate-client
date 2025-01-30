@@ -96,7 +96,7 @@ export function JSHome() {
             }}>
               <span role="img" className='profile-div-button-span'>
                 <img className="profile-div-button-span-img" src={
-                  `${currentUser.image.data == "" || currentUser.image.data == null ? '/defaultProfile.jpg' : `data:image/png;base64,${currentUser.image.data}`}`
+                  `${currentUser.image.data === "" || currentUser.image.data == null ? '/defaultProfile.jpg' : `data:image/png;base64,${currentUser.image.data}`}`
                 } alt={`profile picture of ${currentUser.firstName}`} />
               </span>
               <div className={`${lg ? "d-block" : "d-none"} logout`} 

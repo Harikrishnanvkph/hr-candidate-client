@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "https://hr-candidate-server.onrender.com";
+const serverTemp = "https://hr-candidate-server.onrender.com";
+const baseUrl = 'http://localhost:3000';
 
 async function login(loginData){
     const result = await axios.post(`${baseUrl}/login`,loginData);
@@ -52,6 +53,7 @@ async function updateSkiller(skill,mail){
 }
 
 async function uploadImage(formData){
+    console.log('ack')
     const fd = await axios.post(
         `${baseUrl}/update/pImage`,
         formData,
@@ -61,7 +63,7 @@ async function uploadImage(formData){
             }
         }
     )
-    return fd.data;
+    return fd;
 }
 
 async function createChatID(currentUser,selectedUser){
