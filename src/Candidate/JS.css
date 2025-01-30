@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .profile-div-button{
@@ -27,6 +28,11 @@
 
 }
 
+.hr-title{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 .logout:hover{
     cursor: pointer;
 }
@@ -38,6 +44,10 @@
     height: 36px;
     border-radius: 50%;
     vertical-align:middle;
+}
+
+.jb-mobile{
+    height : 100%
 }
 
 .profile-div-button-span-img{
@@ -64,7 +74,8 @@
     flex : 1 1 auto;
     background-color: aliceblue;
     overflow: hidden;
-    max-height: calc(100vh - 78px);
+    /*max-height: calc(100vh - 78px);*/
+    height: 100%;
 }
 
 
@@ -73,11 +84,11 @@
     justify-content: space-evenly;
     box-sizing: border-box;
     max-width: 250px;
-    max-height: calc(100vh - 78px);
+    height: 100%;
 }
 
 .jb-laptop{
-    max-height: calc(100vh - 78px);
+    max-height: 100%;
 }
 
 .jb-section{
@@ -241,7 +252,7 @@
         min-width: max(200px,100%);
     }
     .jb-body-mobile{
-        height: calc(100vh - 72px);
+        height: 100%;
     }
 
     .jbprofile-details{

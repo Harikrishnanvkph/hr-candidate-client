@@ -81,10 +81,10 @@ export function JSHome() {
   return (
     <>
       <div className="container-fluid job-seeker p-0 d-flex flex-column">
-        <nav className='row jb-nav d-flex justify-content-between p-3 m-0'>
+        <nav className='row jb-nav d-flex justify-content-between p-2 m-0'>
           <div className="d-flex justify-content-md-end justify-content-sm-center justify-content-center align-items-center">
             <AdbIcon className="mx-1 nav-logo" fontSize="large" />
-            <h5 className="m-0">Hari HR Recruit App</h5>
+            <p className="m-0 hr-title">Hari HR Recruit App</p>
           </div>
           <div className='profile-div d-flex align-items-center'>
             <div className='d-sm-flex d-none align-items-center jb-title'>
@@ -111,7 +111,7 @@ export function JSHome() {
         </nav>
         <div className='row jb-body d-sm-flex d-none m-0 p-0'>
           <div className='col-12 m-0 p-0 d-flex jb-laptop'>
-            <div className='jb-menu p-0 d-flex flex-column px-4'>
+            <div className='jb-menu p-0 d-flex flex-column px-3 h-100'>
               {iconC}
             </div>
             <div className='jb-section p-md-2 p-0'>
