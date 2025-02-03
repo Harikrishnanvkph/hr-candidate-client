@@ -14,6 +14,7 @@ export default function NavHome(){
    }
 
    useEffect(() => {
+       console.log('from NavHome.jsx')
       const handleResize = () => {
          if (window.innerWidth > 576) {
             setExpand(false);

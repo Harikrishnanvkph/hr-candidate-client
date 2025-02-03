@@ -34,7 +34,7 @@ export default function JBServices(){
     }
 
     return<>
-        <div className="container-fluid ">
+        <div className="jb-services">
             <div className="row px-3 py-2 stickly-referral
             d-flex flex-sm-row flex-column justify-content-between">
                 <button className="btn btn-primary" onClick={()=>{
@@ -50,7 +50,7 @@ export default function JBServices(){
                     }} />
                 </div>
             </div>
-            <div className="row candidate-seeker">
+            <div className="row p-0 m-0 candidate-seeker">
                 {
                     ref.length > 0 ? ref.map((it,index)=>{
                         if(it.name.toLowerCase().startsWith(inpS.toLowerCase())){
@@ -61,13 +61,13 @@ export default function JBServices(){
                     }) : <p></p>
                 }
             </div>
-            <div className="row px-3 py-3 stickly-referral d-flex justify-content-end">
-                <button className="btn btn-primary" onClick={()=>{
-                    navigate("myServices")
-                }}>
-                    My Requested Services
-                </button>
-            </div>
+            {/*<div className="row px-3 py-3 stickly-referral d-flex justify-content-end">*/}
+            {/*    <button className="btn btn-primary" onClick={()=>{*/}
+            {/*        navigate("myServices")*/}
+            {/*    }}>*/}
+            {/*        My Requested Services*/}
+            {/*    </button>*/}
+            {/*</div>*/}
         </div>
     </>
 }

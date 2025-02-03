@@ -91,12 +91,6 @@
     max-height: 100%;
 }
 
-.jb-section{
-    height: 100%;
-    width: 100%;
-    overflow-y: scroll;
-}
-
 .jb-icon{
     font-size: 30px !important;
 }
@@ -106,9 +100,11 @@
 }
 
 .jb-menu-mobile{
-    max-height: fit-content;
     background-color: antiquewhite;
+    flex : 0 1 auto;
+    height : max-content !important;
 }
+
 
 .jbprofile-pic {
     width: 200px;
@@ -117,7 +113,8 @@
 
 
 .jb-section-mobile{
-    overflow-y: scroll;
+    overflow-y: hidden;
+    flex : 1;
 }
 
 .circle{
@@ -161,6 +158,7 @@
 
 .jbprofile-details{
     width: 550px;
+    margin : 0 !important;
     min-height: 200px;
     height: fit-content;
     & p{
@@ -173,13 +171,13 @@
 }
 
 .emp-jb-card{
-    max-width: 100%;
     border-radius: 10px;
+    width: 100%;
+    flex : auto
 }
 
 .emp-jb-card p{
     overflow-wrap: break-word;
-    margin: 0%;
     margin: 5px;
 }
 
@@ -199,9 +197,31 @@
     min-width: min(200px,100%);
 }
 
-.candidate-seeker{
+.jb-section{
+    height: 100%;
+    width: 100%;
+    /*overflow-y: hidden;*/
+}
+
+.jb-referral, .jb-services{
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stickly-referral{
+    flex : 0 1 auto;
+    width: 100%;
+}
+
+.candidate-seeker{
+    max-height: 100%;
+    width: 100%;
+    flex : 1 1 0;
+    overflow-y : scroll;
 }
 
 @media (min-width : 768px){
@@ -229,6 +249,9 @@
 }
 
 @media (max-width : 768px){
+    .hr-title{
+        font-size: 1em;
+    }
     .jb-menu{
         max-width: 100px;
     }
@@ -247,10 +270,15 @@
 }
 
 @media (max-width : 575px){
+    .candidate-seeker{
+        height : 400px;
+        overflow-y: scroll;
+    }
     .ref-inp input{
         margin-top: 10px;
         min-width: max(200px,100%);
     }
+
     .jb-body-mobile{
         height: 100%;
     }
@@ -261,16 +289,19 @@
 
     .emp-jb-card{
         margin-top: 10px;
-        max-width: 500px;
         background-color: white;
         border-radius: 10px;
         min-width: 400px;
+
     }
     .emp-card{
         background-color: aliceblue !important;
     }
+    .stickly-referral{
+        flex : 0 1 auto;
+    }
     .stickly-referral button{
-        width: 100%;
+        width : 100%;
     }
 }
 

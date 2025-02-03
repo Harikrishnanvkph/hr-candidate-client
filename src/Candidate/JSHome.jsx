@@ -121,7 +121,7 @@ export function JSHome() {
         </div>
         <div className='row d-sm-none d-flex p-0 m-0 jb-mobile'>
           <div className='col-12 d-flex flex-column jb-body-mobile m-0 p-0 justify-content-between'>
-            <div className='jb-section-mobile p-sm-3 p-0 d-flex flex-grow-1 justify-content-center'>
+            <div className='jb-section-mobile p-sm-3 p-0'>
               {routes}
             </div>
             <div className='jb-menu-mobile p-md-3 py-2 d-flex justify-content-around'>
@@ -139,7 +139,7 @@ export function JSHome() {
 function JBICON({icon, name}){
   const navigate = useNavigate();
   return <>
-    <div onClick={()=>navigate(name == "Profile" ? "" : name)} className={`${name} jbicon d-flex flex-md-row flex-column align-items-center justify-content-md-auto justify-content-center flex-grow-1 flex-shrink-1`}>
+    <div onClick={()=>navigate(name === "Profile" ? "" : name)} className={`${name} jbicon d-flex flex-md-row flex-column align-items-center justify-content-md-auto justify-content-center flex-grow-1 flex-shrink-1`}>
       <div className='col-lg-5 col-md-4 text-center p-sm-auto p-0'>
          {icon}
       </div>

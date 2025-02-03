@@ -35,7 +35,7 @@ export default function JBReferral(){
     }
 
     return<>
-        <div className="container-fluid ">
+        <div className="jb-referral">
             <div className="row px-3 py-2 stickly-referral
             d-flex flex-sm-row flex-column justify-content-between">
                 <button className="btn btn-primary" onClick={()=>{
@@ -61,13 +61,13 @@ export default function JBReferral(){
                     }) : <p></p>
                 }
             </div>
-            <div className="row px-3 py-3 stickly-referral d-flex justify-content-end">
-                <button className="btn btn-primary" onClick={()=>{
-                    navigate("myReferrals")
-                }}>
-                    My Applied Referrals
-                </button>
-            </div>
+            {/*<div className="row px-3 py-3 stickly-referral d-flex justify-content-end">*/}
+            {/*    <button className="btn btn-primary" onClick={()=>{*/}
+            {/*        navigate("myReferrals")*/}
+            {/*    }}>*/}
+            {/*        My Applied Referrals*/}
+            {/*    </button>*/}
+            {/*</div>*/}
         </div>
     </>
 }

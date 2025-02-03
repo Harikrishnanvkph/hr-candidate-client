@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit'
 const myData = {
     userCE : null,
     secret : null,
-    toastMessage : ""
+    toastMessage : "",
+    conversations : []
 }
 
 
@@ -20,10 +21,22 @@ const slicer = createSlice({
         },
         toastMessage(state,action){
             state.toastMessage = action.payload;
+        },
+        addConversation(state, action){
+            state.conversations.push(action.payload);
+        },
+        updateConversation(state, action){
+            const {conversation_id, message} = action.payload;
+            state.conversations.forEach((cnv,index)=>{
+                if(cnv.conversation_id === conversation_id){
+                    cnv.messages.push(message)
+                }
+            })
         }
     }
 })
 
-export const {addUser,setSecret,toastMessage} = slicer.actions;
+export const {addUser,setSecret,toastMessage,
+    addConversation,updateConversation} = slicer.actions;
 
 export default slicer.reducer;
