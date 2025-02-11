@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import AdbIcon from '@mui/icons-material/Adb';
-import { getUserDetail, login } from "../API";
+import { getUserDetail, login, getUserId } from "../API";
 import { useDispatch } from "react-redux";
-import { addUser, setSecret } from "../ReduxStore/Slicer";
+import { addUser, setSecret, setUserId } from "../ReduxStore/Slicer";
 import { Bounce, ToastContainer,toast } from "react-toastify";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 
 export default function Login(){
@@ -45,16 +45,17 @@ export default function Login(){
             setIsLoading(true);
             const getLoginBack= await login(userData);
             setIsLoading(false);
-            console.log('Hi Again',getLoginBack)
             if(getLoginBack == null || getLoginBack == ""){
                 errorToast('Not Registered Yet, Please Register to login')
             }else if(getLoginBack == '200'){
                 const user = await getUserDetail(userData.mail);
+                const getUser = await getUserId(userData.mail);
+                dispatch(setUserId(getUser))
                 dispatch(addUser(user));
                 dispatch(setSecret(userData.password))
                 successToast('Login Successful! Preparing User...')
                 setTimeout(()=>{
-                    navigate("/js",{replace : true});
+                    navigate("/js"); //,{replace : true}
                 },2000)
             }else if(getLoginBack == '409'){
                 errorToast("Invalid user credentials");
@@ -64,9 +65,9 @@ export default function Login(){
         }catch(error){
             setIsLoading(false);
             errorToast('Login ERROR!!!')
-            console.log(error);
         }
     }
+
     return<>
         <div id="loader" className={isLoading ? "loader" : "d-none"}>
             <div id='loader-log'></div>

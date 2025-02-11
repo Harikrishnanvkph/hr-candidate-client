@@ -4,7 +4,8 @@ const myData = {
     userCE : null,
     secret : null,
     toastMessage : "",
-    conversations : []
+    conversations : [],
+    userSocket : null
 }
 
 
@@ -13,7 +14,6 @@ const slicer = createSlice({
     initialState : myData,
     reducers : {
         addUser(state, action){
-            console.log(action.type)
             state.userCE = action.payload
         },
         setSecret(state, action){
@@ -32,11 +32,14 @@ const slicer = createSlice({
                     cnv.messages.push(message)
                 }
             })
+        },
+        setUserId(state, action){
+            state.userSocket = action.payload;
         }
     }
 })
 
 export const {addUser,setSecret,toastMessage,
-    addConversation,updateConversation} = slicer.actions;
+    addConversation,updateConversation,setUserId} = slicer.actions;
 
 export default slicer.reducer;

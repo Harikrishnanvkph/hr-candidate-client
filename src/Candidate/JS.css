@@ -200,7 +200,7 @@
 .jb-section{
     height: 100%;
     width: 100%;
-    /*overflow-y: hidden;*/
+    overflow: hidden;
 }
 
 .jb-referral, .jb-services{
@@ -222,6 +222,14 @@
     width: 100%;
     flex : 1 1 0;
     overflow-y : scroll;
+}
+
+.jb-help{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (min-width : 768px){

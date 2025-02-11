@@ -10,6 +10,7 @@ async function login(loginData){
 
 async function register(registerData){
     const result = await axios.post(`${baseUrl}/register`,registerData);
+    console.log(result.data)
     return result.data;
 }
 
@@ -84,6 +85,15 @@ async function getReferral(){
     return referral.data;
 }
 
+async function getUserId(mail){
+    const referral = await axios.post(
+        `${baseUrl}/js/Messages/getUserId`,{
+            mail : mail
+        }
+    )
+    return referral.data;
+}
+
 async function updateReferral(mail,referral){
     const ref = await axios.post(
         `${baseUrl}/update/referral`,
@@ -129,7 +139,18 @@ async function getMyService(mail){
     return referral.data;
 }
 
+async function createConversation(sender, receiver){
+    const conversation = await axios.post(
+        `${baseUrl}/js/Messages/createConversation`,
+        {
+            sender : sender,
+            receiver : receiver
+        }
+    )
+    return conversation.data
+}
+
 
 export {login,register,getUserDetail,updatePhoneNumber,
     updateSkiller,uploadImage, createChatID,getReferral,getService,
-    updateReferral, updateService,getMyReferral,getMyService}
+    updateReferral, updateService,getMyReferral,getMyService, getUserId, createConversation}

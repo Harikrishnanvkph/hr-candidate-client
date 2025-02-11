@@ -27,7 +27,7 @@ export default function JBReferral(){
     const addReferral = async(referral)=>{
         const addRef = await updateReferral(user.mail,referral);
         console.log(addRef.status)
-        if(addRef.status == 200){
+        if(addRef.status === 200){
             dispatch(toastMessage("+ Referral Added"))
         }else{
             dispatch(toastMessage("Error While Adding Referral"))

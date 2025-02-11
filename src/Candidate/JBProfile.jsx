@@ -41,7 +41,6 @@ export default function JBProfile(){
             dispatch(addUser(user));
         }
         getUser().catch();
-        console.log('from useEffect of JBProfile.jsx')
     },[image])
 
     return<>

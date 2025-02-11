@@ -2,7 +2,6 @@ import AdbIcon from '@mui/icons-material/Adb';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import HelpIcon from '@mui/icons-material/Help';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import "./JS.css"
@@ -18,6 +17,7 @@ import { Bounce, ToastContainer,toast } from "react-toastify";
 import { toastMessage } from "../ReduxStore/Slicer";
 import { MyReferrals } from './MyReferrals';
 import { MyServices } from './MyServices';
+import {useMediaQuery} from 'react-responsive'
 
 
 
@@ -31,7 +31,7 @@ const iconC = <>
 
 const routes = <>
   <Routes>
-    <Route element={<JBProfile />} path='/' />
+    <Route element={<JBProfile />} path='*' />
     <Route element={<JBReferral />} path='Referral' />
     <Route element={<JBServices />} path='Services' />
     <Route element={<JBMessages />} path='Messages' />
@@ -47,6 +47,7 @@ export function JSHome() {
   const [lg,setLg] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({maxWidth : 575})
 
   useEffect(()=>{
     if(toastT != ""){
@@ -65,13 +66,19 @@ export function JSHome() {
   },[toastT])
 
   useEffect(() => {
-    const handleBackButton = (event) => {
-      event.preventDefault();
-      window.history.pushState(null, "", window.location.href);
-    };
 
-    window.history.pushState(null, "", window.location.href); // Push initial state
-    window.addEventListener("popstate", handleBackButton);
+    async function init(){
+
+      const handleBackButton = (event) => {
+        event.preventDefault();
+        window.history.pushState(null, "", window.location.href);
+      };
+
+      window.history.pushState(null, "", window.location.href); // Push initial state
+      window.addEventListener("popstate", handleBackButton);
+    }
+
+    init().catch()
 
     return () => {
       window.removeEventListener("popstate", handleBackButton);
@@ -109,26 +116,29 @@ export function JSHome() {
             </button>
           </div>
         </nav>
-        <div className='row jb-body d-sm-flex d-none m-0 p-0'>
-          <div className='col-12 m-0 p-0 d-flex jb-laptop'>
-            <div className='jb-menu p-0 d-flex flex-column px-3 h-100'>
-              {iconC}
-            </div>
-            <div className='jb-section p-md-2 p-0'>
-              {routes}
-            </div>
-          </div>
-        </div>
-        <div className='row d-sm-none d-flex p-0 m-0 jb-mobile'>
-          <div className='col-12 d-flex flex-column jb-body-mobile m-0 p-0 justify-content-between'>
-            <div className='jb-section-mobile p-sm-3 p-0'>
-              {routes}
-            </div>
-            <div className='jb-menu-mobile p-md-3 py-2 d-flex justify-content-around'>
-              {iconC}
-            </div>
-          </div>
-        </div>
+        {
+          !isMobile ?
+              <div className='row jb-body d-sm-flex m-0 p-0'>
+                <div className='col-12 m-0 p-0 d-flex jb-laptop'>
+                  <div className='jb-menu p-0 d-flex flex-column px-3 h-100'>
+                    {iconC}
+                  </div>
+                  <div className='jb-section p-md-2 p-0'>
+                    {routes}
+                  </div>
+                </div>
+              </div>
+            : <div className='row d-flex p-0 m-0 jb-mobile'>
+                <div className='col-12 d-flex flex-column jb-body-mobile m-0 p-0 justify-content-between'>
+                  <div className='jb-section-mobile p-sm-3 p-0'>
+                    {routes}
+                  </div>
+                  <div className='jb-menu-mobile p-md-3 py-2 d-flex justify-content-around'>
+                    {iconC}
+                  </div>
+                </div>
+              </div>
+        }
       </div>
       <ToastContainer style={{zIndex : "1000"}} />
     </>

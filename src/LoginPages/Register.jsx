@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import AdbIcon from '@mui/icons-material/Adb';
-import { register } from "../API";
+import {createConversation, register} from "../API";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
@@ -15,8 +15,9 @@ export default function Register(){
         try {
             setIsLoading(true);
             const getLoginBack = await register(userData);
+            console.log(userData)
             setIsLoading(false);
-            if (getLoginBack === 409) {
+            if (Number(getLoginBack.status)  === 409) {
                 toast.error('User already exists, please login!', {
                     position: "top-center",
                     autoClose: 3000,
@@ -28,7 +29,16 @@ export default function Register(){
                     theme: "light",
                     transition: Bounce,
                 });
-            } else if (getLoginBack === 200) {
+            } else if (Number(getLoginBack.status) === 200) {
+                await createConversation({
+                    uuid : getLoginBack.uuid,
+                    mail : userData.mail,
+                    name : userData.firstName
+                },{
+                    uuid : 52046188,
+                    mail : 'harshavnithkin53@gmail.com',
+                    name : 'Helpdesk'
+                })
                 toast.success('Registration Successful!', {
                     position: "top-center",
                     autoClose: 3000,
@@ -43,7 +53,7 @@ export default function Register(){
                 setTimeout(()=>{
                     navigate("/login");
                 },3000)
-            } else if (getLoginBack === 400) {
+            } else if(Number(getLoginBack.status) === 400) {
                 toast.error('Unexpected registration error. Please try again.', {
                     position: "top-center",
                     autoClose: 3000,
